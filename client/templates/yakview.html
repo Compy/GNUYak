@@ -1,0 +1,46 @@
+<template name="yakview">
+  {{#contentFor "headerTitle"}}
+      <h1 class="title">View Yak</h1>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonLeft"}}
+      {{>ionNavBackButton path="home" text="Yaks"}}
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonRight"}}
+    {{/contentFor}}
+
+    {{#ionView}}
+      {{#ionContent}}
+      <div class="list no-truncate">
+        {{#with yak}}
+          <a class="item item-body item-button-right" href="{{pathFor 'yak.view'}}">
+            {{text}}
+            <button class="button button-clear upvote">{{> ionIcon icon="chevron-up"}}</button>
+            <button class="button button-clear votes" style="top: 32px !important">{{score}}</button>
+            <button class="button button-clear downvote" style="top: 56px !important">{{> ionIcon icon="chevron-down"}}</button>
+            <br/><br/>
+            <span class="timeago">{{timeAgo date}}</span>
+            <span class="comments">{{> ionIcon icon="chatbubble"}} {{numComments this}}</span>
+          </a>
+          <div class="item item-divider">
+            Comments
+          </div>
+          {{#each comments}}
+            <div class="item comment-item item-icon-left">
+              {{> ionIcon icon="chatbubble"}}
+              {{text}}
+              <span class="comment-timeago">{{timeAgo date}}</span>
+            </div>
+          {{/each}}
+          <form id="addCommentForm">
+            <label class="item item-input">
+              <input type="text" id="txtComment" placeholder="Add a comment...">
+            </label>
+            <button type="submit" class="button button-positive button-block">Add Comment</button>
+          </form>
+        {{/with}}
+      </div>
+      {{/ionContent}}
+    {{/ionView}}
+</template>

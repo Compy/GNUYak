@@ -1,0 +1,63 @@
+<template name="home">
+  {{#contentFor "headerTitle"}}
+      <h1 class="title">Yaks</h1>
+    {{/contentFor}}
+
+    {{#contentFor "headerButtonRight"}}
+      <button class="button button-clear" data-ion-modal="_newYak">{{> ionIcon icon="ios-plus-empty"}}</button>
+    {{/contentFor}}
+
+    {{#ionView}}
+      {{#ionContent}}
+        <!-- {{#ionList}} -->
+        <div class="list">
+          {{#each yaks}}
+            <a class="item item-body item-button-right" href="{{pathFor 'yak.view'}}">
+              {{text}}
+              <button class="button button-clear upvote">{{> ionIcon icon="chevron-up"}}</button>
+              <button class="button button-clear votes" style="top: 32px !important">{{score}}</button>
+              <button class="button button-clear downvote" style="top: 56px !important">{{> ionIcon icon="chevron-down"}}</button>
+              <br/><br/>
+              <span class="timeago">{{timeAgo date}}</span>
+              <span class="comments">{{> ionIcon icon="chatbubble"}} {{numComments this}}</span>
+            </a>
+            <!--
+            {{#ionItem path="yak.view"}}
+              <table width="100%" style="max-width: 320px">
+                <tr>
+                  <td width="90%" style="word-wrap: break-word">
+                    {{text}}
+                  </td>
+                  <td width="10%" style="text-align: right">
+                    <a href="#" class="upvote">{{> ionIcon icon="chevron-up"}}</a><br/>
+                    <span class="votes">{{score}}</span>
+                    <br/>
+                    <a href="#" class="downvote">{{> ionIcon icon="chevron-down"}}</a>
+                  </td>
+                </tr>
+              </table>
+              <span class="timeago">{{timeAgo date}}</span>
+              <span class="comments">{{> ionIcon icon="chatbubble"}} {{numComments this}}</span>
+            {{/ionItem}}
+          -->
+          {{/each}}
+        </div>
+        <!-- {{/ionList}} -->
+      {{/ionContent}}
+    {{/ionView}}
+</template>
+
+<template name="_newYak">
+  {{#ionModal customTemplate=true}}
+  <form method="POST" id="addYakForm">
+    <div class="bar bar-header bar-stable">
+      <button data-dismiss="modal" type="button" class="button button-clear">Cancel</button>
+      <h2 class="title">New Yak</h2>
+      <button type="submit" class="button button-positive button-clear">Add</button>
+    </div>
+    <div class="content has-header overflow-scroll">
+      <textarea rows="6" label-type="stacked" name="yakText" id="yakText" placeholder="Tell us whats up..." maxlength="200"></textarea>
+    </div>
+  </form>
+  {{/ionModal}}
+</template>
