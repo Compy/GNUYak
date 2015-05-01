@@ -3,6 +3,8 @@ Open Source YikYak clone built in Meteor. Display simple 200 character messages 
 
 This is a great example of what the MeteorJS framework and platform can do.
 
+http://gnuyak.meteor.com
+
 ## Building and running GNUYak
 Git clone the code into a directory
 ```
