@@ -35,6 +35,15 @@ Template._newYak.events({
     if (!latLng) latLng = {lat: 37.774936, lng: -122.415463};
 
     var text = t.$("#yakText").val();
+
+    if (text == "") {
+      IonLoading.show({
+        customTemplate: '<p>Yak text cannot be blank!</p>',
+        duration: 2000
+      });
+      return;
+    }
+
     t.$("#yakText").val("");
     Yaks.insert({
       text: text,
